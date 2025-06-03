@@ -14,29 +14,27 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
- *
  */
-package io.github.resilience4j.core.registry;
+package io.github.resilience4j.core.registry
 
-public class EntryRemovedEvent<E> extends AbstractRegistryEvent {
+class EntryReplacedEvent<E> internal constructor(
+    private val oldEntry: E,
+    private val newEntry: E
+) : AbstractRegistryEvent() {
 
-    private E removedEntry;
-
-    EntryRemovedEvent(E removedEntry) {
-        this.removedEntry = removedEntry;
-    }
-
-    @Override
-    public Type getEventType() {
-        return Type.REMOVED;
-    }
+    override fun getEventType(): RegistryEvent.Type = RegistryEvent.Type.REPLACED
 
     /**
-     * Returns the removed entry.
+     * Returns the old entry.
      *
-     * @return the removed entry
+     * @return the old entry
      */
-    public E getRemovedEntry() {
-        return removedEntry;
-    }
+    fun getOldEntry(): E = oldEntry
+
+    /**
+     * Returns the new entry.
+     *
+     * @return the new entry
+     */
+    fun getNewEntry(): E = newEntry
 }

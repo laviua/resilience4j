@@ -1,5 +1,22 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.7.22'
+}
+
 ext.moduleName = 'io.github.resilience4j.core'
 
 dependencies {
+    implementation(libraries.kotlin_stdlib)
     testImplementation(libraries.mock_clock)
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
