@@ -14,32 +14,31 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
- *
  */
-package io.github.resilience4j.core.registry;
+package io.github.resilience4j.core.registry
 
-import java.time.ZonedDateTime;
+import java.time.ZonedDateTime
 
-public interface RegistryEvent {
+interface RegistryEvent {
 
     /**
      * Returns the type of the Registry event.
      *
      * @return the type of the Registry event
      */
-    Type getEventType();
+    fun getEventType(): Type
 
     /**
      * Returns the creation time of Registry event.
      *
      * @return the creation time of Registry event
      */
-    ZonedDateTime getCreationTime();
+    fun getCreationTime(): ZonedDateTime
 
     /**
      * Event types which are created by a CircuitBreaker.
      */
-    enum Type {
+    enum class Type {
         /**
          * An Event which informs that an entry has been added
          */

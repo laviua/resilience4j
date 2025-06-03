@@ -14,23 +14,14 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
- *
  */
-package io.github.resilience4j.core.registry;
+package io.github.resilience4j.core.registry
 
-import java.time.ZonedDateTime;
+class EntryAddedEvent<E> internal constructor(
+    private val addedEntry: E
+) : AbstractRegistryEvent() {
 
-abstract class AbstractRegistryEvent implements RegistryEvent {
+    override fun getEventType(): RegistryEvent.Type = RegistryEvent.Type.ADDED
 
-    private final ZonedDateTime creationTime;
-
-
-    AbstractRegistryEvent() {
-        this.creationTime = ZonedDateTime.now();
-    }
-
-    @Override
-    public ZonedDateTime getCreationTime() {
-        return creationTime;
-    }
+    fun getAddedEntry(): E = addedEntry
 }
